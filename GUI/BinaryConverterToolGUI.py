@@ -27,7 +27,7 @@ class Ui_BinaryConverterToolGUI(object):
         BinaryConverterToolGUI.setAutoFillBackground(False)
         BinaryConverterToolGUI.setStyleSheet("")
         self.menubar = QtWidgets.QMenuBar(BinaryConverterToolGUI)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1020, 25))
+        #self.menubar.setGeometry(QtCore.QRect(0, 0, 1020, 25))
         self.menubar.setAutoFillBackground(False)
         self.menubar.setStyleSheet("")
         self.menubar.setObjectName("menubar")
