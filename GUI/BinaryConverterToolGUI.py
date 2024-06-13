@@ -15,6 +15,7 @@ class Ui_BinaryConverterToolGUI(object):
     def setupUi(self, BinaryConverterToolGUI):
         BinaryConverterToolGUI.setObjectName("BinaryConverterToolGUI")
         BinaryConverterToolGUI.setWindowModality(QtCore.Qt.NonModal)
+        BinaryConverterToolGUI.setWindowFlags(QtCore.Qt.WindowType.Window)
         BinaryConverterToolGUI.setEnabled(True)
         BinaryConverterToolGUI.resize(800, 430)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
