@@ -12,13 +12,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_BinaryConverterToolGUI(object):
-    def setupUi(self, BinaryConverterToolGUI):
+    def setupUi(self, BinaryConverterToolGUI:QtWidgets.QWidget):
         BinaryConverterToolGUI.setObjectName("BinaryConverterToolGUI")
-        BinaryConverterToolGUI.setWindowModality(QtCore.Qt.NonModal)
+        BinaryConverterToolGUI.setWindowModality(QtCore.Qt.WindowModality.NonModal)
         BinaryConverterToolGUI.setWindowFlags(QtCore.Qt.WindowType.Window)
         BinaryConverterToolGUI.setEnabled(True)
         BinaryConverterToolGUI.resize(800, 430)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(BinaryConverterToolGUI.sizePolicy().hasHeightForWidth())
@@ -38,11 +38,11 @@ class Ui_BinaryConverterToolGUI(object):
         self.menuHelp.setObjectName("menuHelp")
         self.lbObjFileName = QtWidgets.QLabel(BinaryConverterToolGUI)
         self.lbObjFileName.setGeometry(QtCore.QRect(10, 40, 101, 16))
-        self.lbObjFileName.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbObjFileName.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.lbObjFileName.setObjectName("lbObjFileName")
         self.lbDstFileName = QtWidgets.QLabel(BinaryConverterToolGUI)
         self.lbDstFileName.setGeometry(QtCore.QRect(9, 290, 101, 20))
-        self.lbDstFileName.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbDstFileName.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.lbDstFileName.setObjectName("lbDstFileName")
         self.txObjFileName = QtWidgets.QTextEdit(BinaryConverterToolGUI)
         self.txObjFileName.setGeometry(QtCore.QRect(120, 40, 480, 50))
@@ -60,8 +60,8 @@ class Ui_BinaryConverterToolGUI(object):
         self.cbDstFileName.setObjectName("cbDstFileName")
         self.lbDstFilePath = QtWidgets.QLabel(BinaryConverterToolGUI)
         self.lbDstFilePath.setGeometry(QtCore.QRect(10, 220, 101, 20))
-        self.lbDstFilePath.setTextFormat(QtCore.Qt.AutoText)
-        self.lbDstFilePath.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbDstFilePath.setTextFormat(QtCore.Qt.TextFormat.AutoText)
+        self.lbDstFilePath.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.lbDstFilePath.setObjectName("lbDstFilePath")
         self.txDstFilePath = QtWidgets.QTextEdit(BinaryConverterToolGUI)
         self.txDstFilePath.setEnabled(False)
@@ -109,12 +109,12 @@ class Ui_BinaryConverterToolGUI(object):
         self.txMemorySize.setObjectName("txMemorySize")
         self.lbStartAddr = QtWidgets.QLabel(self.gbSpecMemRange)
         self.lbStartAddr.setGeometry(QtCore.QRect(20, 20, 81, 25))
-        self.lbStartAddr.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbStartAddr.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.lbStartAddr.setObjectName("lbStartAddr")
         self.lbMemorySize = QtWidgets.QLabel(self.gbSpecMemRange)
         self.lbMemorySize.setGeometry(QtCore.QRect(10, 50, 91, 25))
-        self.lbMemorySize.setTextFormat(QtCore.Qt.AutoText)
-        self.lbMemorySize.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbMemorySize.setTextFormat(QtCore.Qt.TextFormat.AutoText)
+        self.lbMemorySize.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.lbMemorySize.setObjectName("lbMemorySize")
         self.cbSpecMemRange = QtWidgets.QCheckBox(BinaryConverterToolGUI)
         self.cbSpecMemRange.setEnabled(True)
@@ -162,7 +162,7 @@ class Ui_BinaryConverterToolGUI(object):
         self.retranslateUi(BinaryConverterToolGUI)
         QtCore.QMetaObject.connectSlotsByName(BinaryConverterToolGUI)
 
-    def retranslateUi(self, BinaryConverterToolGUI):
+    def retranslateUi(self, BinaryConverterToolGUI:QtWidgets.QWidget):
         _translate = QtCore.QCoreApplication.translate
         BinaryConverterToolGUI.setWindowTitle(_translate("BinaryConverterToolGUI", "BinaryConverterToolGUI"))
         self.menuSetting.setTitle(_translate("BinaryConverterToolGUI", "menuSetting"))
