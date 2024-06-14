@@ -1,7 +1,7 @@
 import sys
 import os
 
-from PyQt5.QtWidgets import QDialog,QApplication
+from PyQt5.QtWidgets import QDialog,QApplication,QWidget
 from PyQt5.QtGui import QCloseEvent
 
 from GUI.BinaryConverterToolGUI import Ui_BinaryConverterToolGUI
@@ -23,7 +23,7 @@ class Ui_BinaryConverterTool(Ui_BinaryConverterToolGUI):
         self.Form_SetWindowTitle = "【バイナリファイル変換】ツール"
         return
     
-    def addUiSetting(self, ui) -> None:
+    def addUiSetting(self, ui:QWidget) -> None:
         """
         -----------------------------------------------------------------
         BinaryConverterTool ui設定追加処理\n
