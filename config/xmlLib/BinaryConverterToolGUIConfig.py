@@ -181,6 +181,8 @@ class actionToolList(xmlLib):
     lbDstFileNote:xmlQLabel
     #cbDstFileOverWrite
     cbDstFileOverWrite:xmlQCheckBox
+    #cb2ExcelFile
+    cb2ExcelFile:xmlQCheckBox
     
     #btDstFileProcess
     btDstFileProcess:xmlQPushButton
