@@ -47,7 +47,7 @@ class BinaryConverterLib(object):
         """
         fileBinDataList:dict[int, list[int]] ={}
         dstMemoryDataList:dict[str, list[str]] ={}
-        dstFileComment:list[str] = []
+        dstMemoryFileComment:list[str] = []
 
         #対象ファイル内容取得処理
         srcfileComment = self.FileSysProcess.getBinFileComment(srcFileAddr, startAddr, MemorySize)
@@ -61,13 +61,13 @@ class BinaryConverterLib(object):
         self.__createMemoryList(fileBinDataList, dstMemoryDataList)
 
         #メモリテキスト出力フォーマット作成
-        self.__createMemoryTextFile(dstMemoryDataList, dstFileComment)
+        self.__createMemoryTextFile(dstMemoryDataList, dstMemoryFileComment)
         #メモリテキストファイル出力
-        bResult = self.FileSysProcess.writeFileComment(dstFileAddrList[0], dstFileComment)
+        bResult = self.FileSysProcess.writeFileComment(dstFileAddrList[0], dstMemoryFileComment)
 
         if len(dstFileAddrList) >= 2 :
             #Excelファイル出力
-            bResult = self.__CreateExcelFile(dstFileAddrList[1], dstMemoryDataList)
+            bResult = self.__CreateExcelFile(dstFileAddrList[1], dstMemoryFileComment)
         return bResult
     
     def __analyseSrcData(self,srcfileComment:bytes, fileBinDataList:dict[int, list[int]], startAddr:int = -1) -> None:
@@ -119,7 +119,7 @@ class BinaryConverterLib(object):
             textFileComment.append(lineStr)
         return
     
-    def __CreateExcelFile(self,dstFileAddr:str, dstMemoryDataList:dict[str, list[str]]) ->bool:
+    def __CreateExcelFile(self,dstFileAddr:str, dstMemoryFileComment:list[str]) ->bool:
         #ExcelFile作成
         bResult = self.ExcelLib.createExcelFile(dstFileAddr)
         bResult = self.ExcelLib.setWorkSheet()
@@ -128,47 +128,39 @@ class BinaryConverterLib(object):
 
         #Memoryシート作成
         self.ExcelLib.modifySheetName(dstSheetName=fileName[1])
-        self.__CreateExcelFile_MemoryDataSheet(dstMemoryDataList)
+        self.__CreateExcelFile_MemoryDataSheet(dstMemoryFileComment)
         #ExcelFile保存
         self.ExcelLib.save()
         return True
     
-    def __CreateExcelFile_MemoryDataSheet(self,dstMemoryDataList:dict[str, list[str]]) ->None:
-        #タイトル作成
-        rowIndex = 2
-        colIndex = 2
-        self.ExcelLib.addCellValue(rowIndex,colIndex,'Address')
-        colIndex += 1
-        colDataIndex = 0
-        while(colDataIndex < 16):
-            self.ExcelLib.addCellValue(rowIndex,colIndex,format(colDataIndex, "02X"))
-            colIndex += 1
-            colDataIndex += 1
+    def __CreateExcelFile_MemoryDataSheet(self,dstMemoryFileComment:list[str]) ->None:
         
+        rowIndex = 2
+
         #列幅設定
         self.ExcelLib.setColumnsWidth(2,2, 9)
         self.ExcelLib.setColumnsWidth(3,18, 3.5)
 
-        #メモリデータ内容出力
-        for address, valueList in dstMemoryDataList.items():
-            rowIndex += 1
-            colIndex = 2
-            self.ExcelLib.addCellValue(rowIndex,colIndex, address)
-            colIndex += 1
-            for value in valueList:
-                self.ExcelLib.addCellValue(rowIndex,colIndex, value)
-                colIndex += 1
-
-        #枠線設定
-        self.ExcelLib.setBorder(2,rowIndex, 2, 2)
-        self._SetRowAddrDataBorder(2, rowIndex, 3)
-
         #タイトル背景色設定
         colorValue = 'B4E6A0'
         self.ExcelLib.setBackGroundColor(2, 2, 18, colorValue)
+
+        #セルデータ入力
+        for rowStrComment in dstMemoryFileComment:
+            colIndex = 2
+            rowStrComment = rowStrComment.replace('\n', '')
+            rowStrList = rowStrComment.split('\t')
+            for rowStr in rowStrList:
+                self.ExcelLib.addCellValue(rowIndex,colIndex, rowStr.strip(" "))
+                colIndex += 1
+            rowIndex += 1
+
+        #枠線設定
+        rowIndex -= 1
+        self.ExcelLib.setBorder(2,rowIndex, 2, 2)
+        self._SetRowAddrDataBorder(2, rowIndex, 3)
         colorValue = 'C0C0C0'
-        if colIndex != 19:
-            self.ExcelLib.setBackGroundColor(rowIndex, colIndex, 18, colorValue)
+        self.ExcelLib.setBackGroundColorByCellValue(3, rowIndex, 3, 18,'xx', colorValue)
         return
     
 
