@@ -8,7 +8,7 @@ class BinaryConverterTool_VerGUI(QWidget):
         self.resize(350, 90)
         
         layout = QFormLayout()
-        self.lbVer = QLabel("Version   \t：1.2.0\n" + 
+        self.lbVer = QLabel("Version   \t：1.2.1\n" + 
                             "Created by \t：GaoHongyu\n" + 
                             "MailAddress\t：alitfat142@gmail.com\n" + 
                             "Created at \t：自宅")
