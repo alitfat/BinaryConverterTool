@@ -391,6 +391,7 @@ class actionToolList(xmlLib):
         self.lbStartAddr = xmlQLabel(self.lbStartAddrName,
                              self.lbStartAddrText,
                              self.lbStartAddrHidden)
+        self.lbStartAddr.delLabelProperty('Text')
 
         #txStartAddr
         self.txStartAddr = xmlQTextEdit(self.txStartAddrName,
@@ -403,6 +404,7 @@ class actionToolList(xmlLib):
         self.lbMemorySize = xmlQLabel(self.lbMemorySizeName,
                              self.lbMemorySizeText,
                              self.lbMemorySizeHidden)
+        self.lbMemorySize.delLabelProperty('Text')
 
         #txMemorySize
         self.txMemorySize = xmlQTextEdit(self.txMemorySizeName,
