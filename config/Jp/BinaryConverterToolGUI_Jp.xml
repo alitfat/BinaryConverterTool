@@ -98,7 +98,6 @@
     <lbStartAddr>
       <Name>lbStartAddr</Name>
       <QtWidget>QLabel</QtWidget>
-      <Text>開始アドレス</Text>
       <Hidden>False</Hidden>
     </lbStartAddr>
     <txStartAddr>
@@ -111,7 +110,6 @@
     <lbMemorySize>
       <Name>lbMemorySize</Name>
       <QtWidget>QLabel</QtWidget>
-      <Text>メモリサイズ</Text>
       <Hidden>False</Hidden>
     </lbMemorySize>
     <txMemorySize>
