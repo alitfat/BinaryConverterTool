@@ -92,6 +92,7 @@ class Ui_BinaryConverterTool(Ui_BinaryConverterToolGUI):
         self.dstETConfig.outputConfigSetting()
         return
     
+    
 class BinaryConverterTool(QDialog):
     DstFullFileNameList:list[str] =[]
     def __init__(self,parent=None):
@@ -114,6 +115,8 @@ class BinaryConverterTool(QDialog):
         
         # スロットコネクト処理
         self.guiSlotConnect()
+
+        self.rbSpecMemType_Click()
         return
 
 
@@ -178,6 +181,7 @@ class BinaryConverterTool(QDialog):
         -----------------------------------------------------------------
         """
         if (self.ui.cbSpecMemRange.isChecked()):
+            self.rbSpecMemType_Click()
             self.ui.gbSpecMemType.setHidden(False)
 
             self.ui.gbSpecMemRange.setHidden(False)
@@ -198,9 +202,13 @@ class BinaryConverterTool(QDialog):
         -----------------------------------------------------------------
         """
         if (self.ui.rbSpecMemSize.isChecked()):
-            self.ui.lbMemorySize.setText('メモリサイズ')
+            strMemroyType = self.ui.rbSpecMemSize.text()
         else:
-            self.ui.lbMemorySize.setText('終了アドレス')
+            strMemroyType = self.ui.rbSpecEndAddr.text()
+        strMemroyType = strMemroyType.replace('【', '').replace('】', '')
+        strMemoryTypeList = strMemroyType.split('/')
+        self.ui.lbStartAddr.setText(strMemoryTypeList[0])
+        self.ui.lbMemorySize.setText(strMemoryTypeList[1])
         return
 
     def cbDstFilePath_Click(self) -> None:
